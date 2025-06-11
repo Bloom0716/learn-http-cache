@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8081:8080"
     volumes:
       - type: bind
         source: ./app
@@ -13,6 +13,25 @@ services:
         source: air-tmp
         target: /root/app/tmp
     tty: true
+  
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/cache:/tmp/nginx_cache
+    depends_on:
+      - app
+  
+  posgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
 
 volumes:
   air-tmp:

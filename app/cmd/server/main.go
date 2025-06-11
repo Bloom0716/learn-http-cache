@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"github.com/Bloom0716/learn-http-cache/internal/database"
 	"github.com/Bloom0716/learn-http-cache/internal/router"
 	"github.com/joho/godotenv"
 )
@@ -15,6 +16,11 @@ func init() {
 }
 
 func main() {
-	router := router.NewRouter()
+	repository, err := database.NewRepository()
+	if err != nil {
+		log.Fatal("error initializing database: ", err)
+	}
+
+	router := router.NewRouter(repository)
 	router.Run(":8080")
 }
