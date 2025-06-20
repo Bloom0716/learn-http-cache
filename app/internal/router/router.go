@@ -8,6 +8,7 @@ import (
 
 func NewRouter(repository database.Repository) *gin.Engine {
 	provider := handler.NewProvider(repository)
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
 	api := router.Group("/api")

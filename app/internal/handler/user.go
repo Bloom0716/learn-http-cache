@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -27,7 +26,6 @@ func (p *Provider) GetUserByID(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(c.GetHeader("If-None-Match"))
 	c.Header("Cache-Control", "no-cache")
 	c.JSON(http.StatusOK, gin.H{
 		"user": gin.H{
@@ -56,6 +54,7 @@ func (p *Provider) CreateUser(c *gin.Context) {
 		return
 	}
 
+	c.Header("ETag", createdUser.Etag)
 	c.Header("Cache-Control", "no-store")
 	c.JSON(http.StatusCreated, gin.H{
 		"user": gin.H{
