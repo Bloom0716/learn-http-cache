@@ -3,49 +3,6 @@
 This project demonstrates the use of HTTP caching mechanisms with a Go backend and Nginx as a reverse proxy.
 It is designed as a learning resource for understanding HTTP caching concepts and is intended to be used as part of a new graduate training program.
 
-## Project Structure
-
-```
-docker-compose.yaml
-Dockerfile
-Makefile
-readme.md
-app/
-    .air.toml
-    .env
-    .gitignore
-    go.mod
-    go.sum
-    cmd/
-        server/
-            main.go
-    internal/
-        database/
-            package.go
-            user.go
-        handler/
-            health.go
-            package.go
-            time.go
-            user.go
-        model/
-            user.go
-        router/
-            router.go
-    tmp/
-nginx/
-    .gitignore
-    nginx.conf
-    cache/
-        ...
-script/
-    create_user.sh
-    get_user.sh
-    health.sh
-    now_no_store.sh
-    now.sh
-```
-
 ## Features
 
 - **HTTP Caching**: Demonstrates `ETag`, `Cache-Control`, and Nginx caching.
@@ -88,7 +45,3 @@ script/
 - **PostgreSQL**: Database for user data.
 - **Docker**: Containerization.
 - **Air**: Live reload for Go development.
-
-## License
-
-This project is licensed under the MIT License.
